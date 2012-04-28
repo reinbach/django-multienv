@@ -1,0 +1,26 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <section id="environment">
+        <div class="page-header">
+            <h2>Current Environment: </h2>
+        </div>
+         
+        <div class="row">
+            <div class="span3">
+                <h3>Add Order</h3>
+             
+                <form method="post" class="well" action="">
+                    {% csrf_token %}
+                    {{ form.order_number }}
+                    {{ form.amount }}
+                    <button class="btn" type="submit">Add Order</button>
+                </form>
+            </div>
+            <div class="span9">
+                <h3>List of Orders</h3>
+                
+            </div>
+        </div>
+    </section>
+{% endblock %}
