@@ -22,7 +22,12 @@ def get_default_environment():
 def get_environment(request):
     if not request.session.get('environment', False):
         request.session['environment'] = get_default_environment()
-    return settings.ENVIRONMENTS.get(request.session.get('environment'), None)
+    return request.session.get('environment', None)
+
+#---------------------------------------------------------------------------
+def get_environment_data(request):
+    env = get_environment(request)
+    return settings.ENVIRONMENTS.get(env)
 
 #---------------------------------------------------------------------------
 def get_environment_db(env):

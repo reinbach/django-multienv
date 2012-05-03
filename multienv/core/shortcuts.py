@@ -5,7 +5,7 @@ from core import utils
 
 def request_to_response(request, template, context={}):
     # ensure we have the environment var set
-    context.update(environment=utils.get_environment(request))
+    context.update(environment=utils.get_environment_data(request))
     return render_to_response(
         template,
         context,
