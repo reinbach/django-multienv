@@ -1,5 +1,4 @@
-from django.shortcuts import render_to_response
-from django.template import RequestContext
+from core.shortcuts import request_to_response
 
 from forms import OrderForm
 
@@ -9,12 +8,8 @@ def order_list(request):
     if request.method == 'POST':
         form = OrderForm(data=request.POST)
         if form.is_valid():
-            form.save()
+            form.save(request=request)
     context = dict(
         form=form
     )
-    return render_to_response(
-        'order/index.html',
-        context,
-        context_instance=RequestContext(request)
-    )
+    return request_to_response(request, 'order/index.html', context)

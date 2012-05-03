@@ -1,17 +1,33 @@
 from django.conf import settings
 
-def get_environment_db(request):
-    """Determine/set the database to use based on environment"""
-    if not request.session.get('environment', False):
+#---------------------------------------------------------------------------
+def set_environment(request, env):
+    """Set the environment to that provided
+    If not valid then set to default
+    """
+    if env in settings.ENVIRONMENTS:
+        request.session['environment'] = env
+    else:
         request.session['environment'] = get_default_environment()
-    env = settings.ENVIRONMENTS.get(request.session.get('environment'), None)
-    if env is None:
-        return None
-    return env.get('database', None)
 
+#---------------------------------------------------------------------------
 def get_default_environment():
     """Get the default environment"""
     for env, data in settings.ENVIRONMENTS.items():
-        if date.get('default'):
+        if data.get('default'):
             return env
     raise "There is no default environment"
+
+#---------------------------------------------------------------------------
+def get_environment(request):
+    if not request.session.get('environment', False):
+        request.session['environment'] = get_default_environment()
+    return settings.ENVIRONMENTS.get(request.session.get('environment'), None)
+
+#---------------------------------------------------------------------------
+def get_environment_db(env):
+    """Determine/set the database to use based on environment"""
+    env = settings.ENVIRONMENTS.get(env, None)
+    if env is None:
+        return None
+    return env.get('database', None)

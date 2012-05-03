@@ -1,6 +1,17 @@
 {% extends "layout.html" %}
 
 {% block content %}
-    <h2>Current Environment: </h2>
-
+    <div class="row">
+        <div class="span12">
+            <ul>
+                {% for env_key, env in environments.items %}
+                    <li>
+                        <a href="{% url change_environment env_key %}">
+                            {{ env.label }}
+                        </a>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
 {% endblock %}
