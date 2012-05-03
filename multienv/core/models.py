@@ -20,4 +20,3 @@ class Environment(models.Model):
 
     def set_environment(self, env):
         self.ENV = env
-
