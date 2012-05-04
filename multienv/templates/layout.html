@@ -3,6 +3,7 @@
     <head>
         <title>Multi Environment Example</title>
         <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.min.css" type="text/css" media="screen" />
+        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-alert.js"></script>
 	<style type="text/css" media="screen">
 	  body { padding-top: 60px; }
 	</style>
@@ -20,6 +21,20 @@
             </div>
         </div>
         <div class="container">
+            {% if messages %}
+               <section id="alerts">
+                   <div class="row">
+                       <div class="span12">
+                           {% for message in messages %}
+                           <div class="alert {% if message.tags %}alert-{{ message.tags }}"{% endif %}>
+                               <button class="close" data-dismiss="alert">×</button>
+                               {{ message }}
+                           </div>
+                           {% endfor %}
+                       </div>
+                   </div>
+               </section>
+            {% endif %}
             <section id="environment">
                 <div class="page-header">
                     <h2>Current Environment: {{ environment.label }}</h2>
