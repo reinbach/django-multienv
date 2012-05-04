@@ -18,3 +18,25 @@ Handles the user profile and database access limited to single database instance
 
 Orders App:
 Able to manage order information across the various environments. User makes a selection as to which environment they would like to work in. Thereafter all queries are directed at that database instance until changed.
+
+
+Install and Run
+---------------
+
+The following should get you up and running;
+
+    python setup.py install
+    cd multienv
+    python manage.py syncdb
+
+The following extra database instances will need to be created;
+
+    2. multienv_dev
+    3. multienv_qa
+    4. multienv_prod
+
+Need to setup/create the necessary tables in the extra database instances;
+
+    psql -U <db_user> multienv_dev < sample.sql
+    psql -U <db_user> multienv_qa < sample.sql
+    psql -U <db_user> multienv_prod < sample.sql
