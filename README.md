@@ -31,9 +31,9 @@ The following should get you up and running;
 
 The following extra database instances will need to be created;
 
-    2. multienv_dev
-    3. multienv_qa
-    4. multienv_prod
+    1. multienv_dev
+    2. multienv_qa
+    3. multienv_prod
 
 Need to setup/create the necessary tables in the extra database instances;
 
