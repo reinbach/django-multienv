@@ -1,5 +1,6 @@
 language: python
 python:
 	 - "2.7"
-install: 
-	 python setup.py install
+install: python setup.py install
+script: python multienv/manage.py test core --setting=test_settings
+	
