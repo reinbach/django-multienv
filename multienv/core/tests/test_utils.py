@@ -47,10 +47,10 @@ class EnvironmentTest(unittest.TestCase):
     #---------------------------------------------------------------------------
     def test_get_env_db(self):
         """Test getting the environment database"""
-        db = utils.get_environment_db(self.DEFAULT_ENV)
+        db = utils.get_environment_db(self.request)
         self.assertEqual(self.DEFAULT_ENV, db)
 
         # change environment
         utils.set_environment(self.request, 'qa')
-        db = utils.get_environment_db('qa')
+        db = utils.get_environment_db(self.request)
         self.assertEqual('qa', db)

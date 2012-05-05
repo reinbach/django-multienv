@@ -6,9 +6,11 @@ from core.shortcuts import request_to_response
 from core import utils
 
 from forms import OrderForm
+from models import Order
 
 #---------------------------------------------------------------------------
 def order_list(request):
+    orders = Order.objects.using(utils.get_environment_db(request)).all()
     form = OrderForm()
     if request.method == 'POST':
         form = OrderForm(data=request.POST)
@@ -19,6 +21,7 @@ def order_list(request):
             ))
             return http.HttpResponseRedirect(reverse('order_home'))
     context = dict(
-        form=form
+        form=form,
+        orders=orders
     )
     return request_to_response(request, 'order/index.html', context)

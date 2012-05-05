@@ -20,6 +20,8 @@ def get_default_environment():
 
 #---------------------------------------------------------------------------
 def get_environment(request):
+    if request is None:
+        return get_default_environment()
     if not request.session.get('environment', False):
         request.session['environment'] = get_default_environment()
     return request.session.get('environment', None)
@@ -30,9 +32,9 @@ def get_environment_data(request):
     return settings.ENVIRONMENTS.get(env)
 
 #---------------------------------------------------------------------------
-def get_environment_db(env):
+def get_environment_db(request):
     """Determine/set the database to use based on environment"""
-    env = settings.ENVIRONMENTS.get(env, None)
+    env = get_environment_data(request)
     if env is None:
         return None
     return env.get('database', None)
