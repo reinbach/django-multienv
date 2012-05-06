@@ -8,6 +8,7 @@
 	</style>
         <script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-alert.js"></script>
+        <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-dropdown.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/bootstrap-modal.js"></script>
         <script type="text/javascript" src="{{ STATIC_URL }}js/less-1.3.0.min.js"></script>
     </head>
@@ -15,10 +16,31 @@
         <div class="navbar navbar-fixed-top">
             <div class="navbar-inner">
                 <div class="container">
-                    <a class="brand" href="/">Django Multi. Env.</a>
-                    <ul class="nav">
-                        <li><a href="{% url order_home %}">Orders</a></li>
-                    </ul>
+                    <div class="nav-collapse">
+                        <a class="brand" href="/">Django Multi. Env.</a>
+                        <ul class="nav">
+                            <li><a href="{% url order_home %}">Orders</a></li>
+                        </ul>
+                        <ul class="nav pull-right">
+                            <li><a href="#">{{ environment.label }}</a></li>
+                        </ul>
+                        <ul class="nav pull-right">
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                    Environment <b class="caret"></b>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    {% for env_key, env in environments.items %}
+                                        <li>
+                                            <a href="{% url change_environment env_key %}">
+                                                {{ env.label }}
+                                            </a>
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
