@@ -1,0 +1,31 @@
+{% extends "layout.html" %}
+
+{% block content %}
+    <div class="row">
+        <div class="span12">
+             
+            <form method="post" class="form-horizontal" action="">
+                {% csrf_token %}
+                <fieldset>
+                    <legend>Update Order</legend>
+                    <div class="control-group">
+                        <label class="control-label" for="id_order_number">Order Number:</label>
+                        <div class="controls">
+                            {{ form.order_number }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="id_amount">Amount:</label>
+                        <div class="controls">
+                            {{ form.amount }}
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button class="btn btn-primary" type="submit">Update Order</button>
+                        <a href="{% url order_home %}" class="btn">Cancel</a>
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
