@@ -32,7 +32,7 @@
                                 <ul class="dropdown-menu">
                                     {% for env_key, env in environments.items %}
                                         <li>
-                                            <a href="{% url change_environment env_key %}">
+                                            <a href="{% url change_environment env_key %}?next=/order">
                                                 {{ env.label }}
                                             </a>
                                         </li>

@@ -3,15 +3,14 @@
 {% block content %}
     <div class="row">
         <div class="span12">
-            <ul>
-                {% for env_key, env in environments.items %}
-                    <li>
-                        <a href="{% url change_environment env_key %}">
-                            {{ env.label }}
-                        </a>
-                    </li>
-                {% endfor %}
-            </ul>
+            <p>This is a sample Django app that handles multiple envs/databases using the same model</p>
+            <p>Select the environment you want to work in from the buttons below or via the menu</p>
+
+            {% for env_key, env in environments.items %}
+                <a href="{% url change_environment env_key %}?next=/order" class="btn btn-large">
+                    {{ env.label }} »
+                </a>
+            {% endfor %}
         </div>
     </div>
 {% endblock %}
